@@ -1,0 +1,18 @@
+[package]
+name = "rememberthis"
+version = "0.1.0"
+edition = "2024"
+description = """
+rememberthis is a utility to aid in memorizing snippets of information.
+"""
+repository = "https://github.com/MissMoonshine/rememberthis"
+categories = ["command-line-utilities"]
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+directories = "6"
+
+[[bin]]
+name = "rt"
+path = "src/main.rs"
