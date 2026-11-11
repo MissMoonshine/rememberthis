@@ -58,10 +58,13 @@ fn input_entry() -> (String, bool) {
 
     loop {
         let mut line = String::new();
-        io::stdin()
+        let num_bytes = io::stdin()
             .read_line(&mut line)
             .expect("Failed to read line");
 
+        if num_bytes == 0 {
+            return (line, true)
+        }
         if line.trim_end() == SEPARATOR {
             break;
         } else if line.trim_end() == ANOTHER_ENTRY {
@@ -88,6 +91,9 @@ fn append_entry(txtfile_path: &PathBuf, entry: String) -> std::io::Result<()> {
 fn create(txtfile_path: PathBuf) -> std::io::Result<()> {
     loop {
         let (entry, keep_going) = input_entry();
+        if entry.len() == 0 {
+            break;
+        }
         append_entry(&txtfile_path, entry)?;
         if !keep_going {
             break;
